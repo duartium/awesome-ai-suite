@@ -36,6 +36,9 @@ $RECYCLE.BIN/
 .AppleDouble
 .LSOverride
 
+## Local appsettings
+/CharacterUniverse/appsettings.Local.json
+
 # Thumbnails
 ._*
 

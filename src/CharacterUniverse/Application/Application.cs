@@ -1,4 +1,5 @@
-﻿using CharacterUniverse.Infraestructure.Characters.Helpers;
+﻿using CharacterUniverse.Infraestructure.AI;
+using CharacterUniverse.Infraestructure.Characters.Helpers;
 using Spectre.Console;
 
 namespace CharacterUniverse.Application;
@@ -25,7 +26,15 @@ public class Application
 
 		var character = CharacterJsonHelper.GetCharacterByName(selectedCharacterName);
 
+
+
 		AnsiConsole.Markup($"[blue]¡Great! You has selected:[/] [white on green]{selectedCharacterName}[/]");
+
+		var agent = new AISemanticService();
+
+		var initialPrompt = character.Description + "present you and to do the first question. all interaction in spanish";
+		agent.InvokePromptAsync(initialPrompt);
+
 	}
 }
 

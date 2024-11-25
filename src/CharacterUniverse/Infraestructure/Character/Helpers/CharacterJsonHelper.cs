@@ -1,5 +1,6 @@
 ﻿using CharacterUniverse.Core.Models;
 using Spectre.Console;
+using System.Linq;
 using System.Text.Json;
 
 namespace CharacterUniverse.Infraestructure.Characters.Helpers;
@@ -30,6 +31,17 @@ public class CharacterJsonHelper
 
 		var character = characters.FirstOrDefault( x => x.Name == name);
 		return character;
+	}
+
+	public static string[] GetAllCharacterNames()
+	{
+		var characters = GetCharactersFromSettings();
+
+		var characterNames = characters
+			.Select(x => x.Name)
+			.ToArray();
+
+		return characterNames;
 	}
 
 	private static string GetProjectRootDirectory() { 

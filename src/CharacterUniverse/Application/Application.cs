@@ -1,13 +1,21 @@
 ﻿using CharacterUniverse.Infraestructure.AI;
 using CharacterUniverse.Infraestructure.Characters.Helpers;
 using Spectre.Console;
+using System.Text;
 
 namespace CharacterUniverse.Application;
 
 public class Application
 {
-	public void Run()
+	private readonly AISemanticService _semanticService;
+	public Application(AISemanticService aISemanticService)
+    {
+		_semanticService = aISemanticService;
+	}
+    public void Run()
 	{
+		Console.OutputEncoding = Encoding.UTF8;
+
 		AnsiConsole.Write(
 		new FigletText("Character Universe")
 			.LeftJustified()
@@ -16,24 +24,18 @@ public class Application
 		AnsiConsole.WriteLine("Select your character");
 		var selectedCharacterName = AnsiConsole.Prompt(
 			new SelectionPrompt<string>()
-			.Title("")
-			.PageSize(10)
-			.MoreChoicesText("[grey](Move up and down to reveal more characters)[/]")
-			.AddChoices(new[]
-			{
-				"Rosie", "Doctor"
-			}));
+				.Title("")
+				.PageSize(10)
+				.MoreChoicesText("[grey](Move up and down to reveal more characters)[/]")
+				.AddChoices(CharacterJsonHelper.GetAllCharacterNames())
+			);
 
 		var character = CharacterJsonHelper.GetCharacterByName(selectedCharacterName);
 
+		AnsiConsole.MarkupLine($"[blue]¡Great! You has selected:[/] [white on green]{selectedCharacterName}[/]");
 
-
-		AnsiConsole.Markup($"[blue]¡Great! You has selected:[/] [white on green]{selectedCharacterName}[/]");
-
-		var agent = new AISemanticService();
-
-		var initialPrompt = character.Description + "present you and to do the first question. all interaction in spanish";
-		agent.InvokePromptAsync(initialPrompt);
+		var initialPrompt = character.Description;
+		_semanticService.InvokePromptAsync(initialPrompt);
 
 	}
 }

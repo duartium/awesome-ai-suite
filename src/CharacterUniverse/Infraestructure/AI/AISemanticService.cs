@@ -33,7 +33,9 @@ public class AISemanticService
     {
         try
         {
-            prompt = ReplaceVariablesInPrompt(prompt);
+            prompt += " Responds in @language.";
+
+			prompt = ReplaceVariablesInPrompt(prompt);
             prompt = RefinesResponse(prompt);
 
 			var response = AnsiConsole.Status()
@@ -45,7 +47,7 @@ public class AISemanticService
                     return response;
                 });
             
-			AnsiConsole.WriteLine(response.GetValue<string>());
+			AnsiConsole.MarkupLine($"[black on white]{response.GetValue<string>()}[/]");
             Console.ReadKey();
 		}
         catch (Exception ex)
@@ -69,7 +71,8 @@ public class AISemanticService
     private string RefinesResponse(string prompt)
     {
         return prompt
-            + "Keep your answers brief, engaging, and impactful, " +
+            + "very shortly introduce yourself max 20 words"
+			+ "Keep your answers short, engaging, and to the point, " +
             "focusing on delivering essential information efficiently.";
 	}
 

@@ -37,6 +37,15 @@ public class Application
 		var initialPrompt = character.Description;
 		_semanticService.InvokePromptAsync(initialPrompt);
 
+		while (true)
+		{
+			var userInput = Console.ReadLine();
+
+			if(string.IsNullOrWhiteSpace(userInput))
+				continue;
+			
+			_semanticService.InvokePromptAsync(userInput.ToString());
+		}
 	}
 }
 

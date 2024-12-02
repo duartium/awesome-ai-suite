@@ -1,5 +1,7 @@
-﻿using CharacterUniverse.Infraestructure.AI;
+﻿using CharacterUniverse.Application.Common;
+using CharacterUniverse.Infraestructure.AI;
 using CharacterUniverse.Infraestructure.Characters.Helpers;
+using Microsoft.SemanticKernel;
 using Spectre.Console;
 using System.Text;
 
@@ -46,6 +48,27 @@ public class Application
 			
 			_semanticService.InvokePromptAsync(userInput.ToString());
 		}
+	}
+
+	public async void RunCustomPlugin()
+	{
+		string filePath = Path.Combine(
+			Utils.GetProjectRootDirectory(),
+			"Infraestructure/Prompts");
+
+		var kernel = Kernel.CreateBuilder()
+			.Build();
+
+		
+		var plugins = kernel.CreatePluginFromPromptDirectory(filePath);
+		string input = "G, C";
+
+		var result = await kernel.InvokeAsync(
+			plugins["SuggestChords"],
+			new() { { "startingChords", input } }
+		);
+
+		AnsiConsole.MarkupLine($"[blue on white]{result}[/]");
 	}
 }
 

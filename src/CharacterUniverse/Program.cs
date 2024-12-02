@@ -28,6 +28,6 @@ var app = serviceProvider.GetRequiredService<Application>();
 
 var pipeline = new MiddlewarePipeline()
 	.Use(new CharacterUniverseHandlingMiddleware())
-	.SetFinalAction(app.Run);
+	.SetFinalAction(app.RunCustomPlugin);
 
 pipeline.Execute();

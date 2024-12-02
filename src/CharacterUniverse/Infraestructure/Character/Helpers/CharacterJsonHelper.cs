@@ -1,6 +1,6 @@
-﻿using CharacterUniverse.Core.Models;
+﻿using CharacterUniverse.Application.Common;
+using CharacterUniverse.Core.Models;
 using Spectre.Console;
-using System.Linq;
 using System.Text.Json;
 
 namespace CharacterUniverse.Infraestructure.Characters.Helpers;
@@ -8,7 +8,7 @@ namespace CharacterUniverse.Infraestructure.Characters.Helpers;
 public class CharacterJsonHelper
 {
 	private static readonly string filePath = Path.Combine(
-		GetProjectRootDirectory(), 
+		Utils.GetProjectRootDirectory(), 
 		"Application/Settings/characters.json");
 
 	public static List<Character> GetCharactersFromSettings()
@@ -44,12 +44,5 @@ public class CharacterJsonHelper
 		return characterNames;
 	}
 
-	private static string GetProjectRootDirectory() { 
-		var currentDirectory = AppDomain.CurrentDomain.BaseDirectory; 
-		while (Directory.GetParent(currentDirectory).Name != "bin") 
-		{ 
-			currentDirectory = Directory.GetParent(currentDirectory).FullName; 
-		} 
-		return Directory.GetParent(currentDirectory).Parent.FullName; 
-	}
+	
 }

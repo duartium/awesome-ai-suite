@@ -56,6 +56,16 @@ public class AISemanticService
         }
     }
 
+    public KernelPlugin GetCustomPlugin(string pluginName)
+    {
+		string filePath = Path.Combine(
+			Utils.GetProjectRootDirectory(),
+			"Infraestructure/Prompts");
+
+		var plugins = _kernel.CreatePluginFromPromptDirectory(filePath);
+        return plugins;
+	}
+
     private string ReplaceVariablesInPrompt(string prompt)
     {
         string newPrompt = string.Empty;

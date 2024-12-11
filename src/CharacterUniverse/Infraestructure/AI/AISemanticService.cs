@@ -1,6 +1,7 @@
 ﻿using CharacterUniverse.Application.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.ChatCompletion;
 using Spectre.Console;
 
 namespace CharacterUniverse.Infraestructure.AI;
@@ -56,7 +57,7 @@ public class AISemanticService
         }
     }
 
-    public KernelPlugin GetCustomPlugin(string pluginName)
+    public KernelPlugin GetCustomPlugins()
     {
 		string filePath = Path.Combine(
 			Utils.GetProjectRootDirectory(),
@@ -64,6 +65,21 @@ public class AISemanticService
 
 		var plugins = _kernel.CreatePluginFromPromptDirectory(filePath);
         return plugins;
+	}
+
+    public async Task<FunctionResult> InvokeCustomPluginAsync(
+        string pluginName, 
+        string input)
+    {
+		var plugins = GetCustomPlugins();
+        ChatHistory history = [];
+
+		var result = await _kernel.InvokeAsync(
+			plugins[pluginName],
+			new() { {"starting"+pluginName, input } }
+		);
+
+		return result;
 	}
 
     private string ReplaceVariablesInPrompt(string prompt)

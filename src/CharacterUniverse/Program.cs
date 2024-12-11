@@ -3,7 +3,6 @@ using CharacterUniverse.Application.Middleware;
 using CharacterUniverse.Infraestructure.AI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net;
 
 #region settings application
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
@@ -28,6 +27,6 @@ var app = serviceProvider.GetRequiredService<Application>();
 
 var pipeline = new MiddlewarePipeline()
 	.Use(new CharacterUniverseHandlingMiddleware())
-	.SetFinalAction(app.RunCustomPlugin);
+	.SetFinalAction(app.Run);
 
 pipeline.Execute();

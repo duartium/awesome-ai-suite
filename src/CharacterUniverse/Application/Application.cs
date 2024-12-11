@@ -1,7 +1,5 @@
-﻿using CharacterUniverse.Application.Common;
-using CharacterUniverse.Infraestructure.AI;
+﻿using CharacterUniverse.Infraestructure.AI;
 using CharacterUniverse.Infraestructure.Characters.Helpers;
-using Microsoft.SemanticKernel;
 using Spectre.Console;
 using System.Text;
 
@@ -17,7 +15,7 @@ public class Application
     public void Run()
 	{
 		Console.OutputEncoding = Encoding.UTF8;
-
+		
 		AnsiConsole.Write(
 		new FigletText("Character Universe")
 			.LeftJustified()
@@ -45,30 +43,19 @@ public class Application
 
 			if(string.IsNullOrWhiteSpace(userInput))
 				continue;
-			
-			_semanticService.InvokePromptAsync(userInput.ToString());
+
+			if (!character.Plugin.IsCustomPlugin)
+			{
+				_semanticService.InvokePromptAsync(userInput.ToString());
+			}else 
+			{
+				var result = Task.Run(async () => await _semanticService
+					.InvokeCustomPluginAsync(character.Plugin.Name, userInput)
+				);
+				AnsiConsole.MarkupLine($"[blue on white]{result.Result}[/]");
+			}
+				
 		}
-	}
-
-	public async void RunCustomPlugin()
-	{
-		string filePath = Path.Combine(
-			Utils.GetProjectRootDirectory(),
-			"Infraestructure/Prompts");
-
-		var kernel = Kernel.CreateBuilder()
-			.Build();
-
-		
-		var plugins = kernel.CreatePluginFromPromptDirectory(filePath);
-		string input = "G, C";
-
-		var result = await kernel.InvokeAsync(
-			plugins["SuggestChords"],
-			new() { { "startingChords", input } }
-		);
-
-		AnsiConsole.MarkupLine($"[blue on white]{result}[/]");
 	}
 }
 

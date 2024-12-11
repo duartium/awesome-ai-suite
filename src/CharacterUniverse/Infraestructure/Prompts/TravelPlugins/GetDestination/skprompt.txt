@@ -1,0 +1,9 @@
+﻿<message role="system">
+Instructions: Identify the destination the user wants to travel.
+</message>
+<message role="user">
+I am so excited to take time off woek! My partner and I are thinking about going to Santorini in Greece! I absolutely LOVE Greek foodm I can't wait to be some place warm.
+</message>
+<message role="assistant">Santorini, Greene</message>
+
+<message role="user">{{$input}}</messsage>

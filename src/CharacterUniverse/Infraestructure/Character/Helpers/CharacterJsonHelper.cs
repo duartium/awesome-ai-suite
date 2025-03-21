@@ -38,7 +38,7 @@ public class CharacterJsonHelper
 		var characters = GetCharactersFromSettings();
 
 		var characterNames = characters
-			.Select(x => x.Name)
+			.Select(x => $"{x.Name}: {x.ShortDescription}")
 			.ToArray();
 
 		return characterNames;

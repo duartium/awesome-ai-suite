@@ -6,6 +6,8 @@ This console application dives into **AI concepts** using the **Semantic Kernel*
 
 ![initial cover](src/docs/example.png)
 
+![interaction](src/docs/interaction.png)
+
 ## 🚀 Features  
 - 🧩 **Semantic Kernel integration:** Unlock the potential of AI development.  
 - 🎭 **Unique personalities:** Characters with individual traits for a lively experience.  

@@ -37,7 +37,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 ## Local appsettings
-/CharacterUniverse/appsettings.Local.json
+CharacterUniverse/appsettings.Local.json
 
 # Thumbnails
 ._*

@@ -1,34 +1,37 @@
-# 🌟 Awesome AI Suite 🌟
+# 🌟 Awesome AI Suite 🌟  
+Exploring the world of Artificial Intelligence through unique characters, personalities, and agents! 🤖✨
 
-Welcome to **Awesome AI Suite**! 🚀
+## 📝 Project Description  
+This console application dives into **AI concepts** using the **Semantic Kernel** 🧠. Each character in the app has a specific personality and acts as an agent 🤩, showcasing the practical use of AI in creative and interactive ways! 🎭
 
-This repository is a comprehensive collection of projects designed to showcase the incredible possibilities and practical applications of artificial intelligence (AI) using the powerful tools within the .NET ecosystem.
+![initial cover](src/docs/example.png)
 
-## Overview
+![interaction](src/docs/interaction.png)
 
-The **Awesome AI Suite** brings together multiple projects, each demonstrating different facets of AI, from machine learning and natural language processing to computer vision and neural networks. Whether you're a seasoned developer or just getting started with AI, this suite provides a hands-on approach to learning and implementing AI solutions using .NET.
+## 🚀 Features  
+- 🧩 **Semantic Kernel integration:** Unlock the potential of AI development.  
+- 🎭 **Unique personalities:** Characters with individual traits for a lively experience.  
+- 🤝 **Interactive agents:** Empower AI to perform tasks and engage with users.  
 
-## Projects Included
+## 💻 Requirements  
+- 🛠️ Visual Studio (recommended version: [add your preferred version])  
+- ⚙️ .NET Framework (specify the version)  
+- 📂 Semantic Kernel library  
 
-- **🤖 Machine Learning with ML.NET**: Dive into the world of predictive analytics and model training with ML.NET. Learn how to create, train, and deploy machine learning models that can analyze data and make accurate predictions.
-  
-- **💬 Natural Language Processing (NLP)**: Explore how .NET can be used to process and understand human language. This project covers text analysis, sentiment detection, and language translation.
+## 🛠️ Installation  
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/duartium/awesome-ai-suite.git 
+   
+## 🔑 Configuration Instructions
 
-- **👁️ Computer Vision with OpenCV and .NET**: Understand how to integrate OpenCV with .NET to develop powerful computer vision applications. Implement image processing, face recognition, and object detection.
+To properly configure the application, follow these steps:
 
-- **🧠 Neural Networks and Deep Learning**: Get hands-on experience with neural networks and deep learning models. Utilize libraries like TensorFlow.NET to build and train complex neural networks.
+1. **Create a copy of the `appsettings.Development.json` file**:  
+   Duplicate the file and rename it to `appsettings.Local.json`.
 
-- **💬 AI Chatbots**: Learn to create intelligent chatbots using .NET and various AI services. Understand how to process user input, manage dialogue, and provide meaningful responses.
+2. **Set your OpenAI API key**:  
+   Open the `appsettings.Local.json` file and insert your OpenAI API key.
 
-## Why Use Awesome AI Suite?
-
-- **📚 Comprehensive Tutorials**: Each project is accompanied by detailed tutorials that guide you through the setup, implementation, and deployment stages.
-- **🌟 Real-World Applications**: Practical examples that demonstrate how to apply AI solutions to real-world problems.
-- **🌐 Community and Support**: Join a community of developers passionate about AI and .NET. Share your projects, ask for help, and collaborate on innovative solutions.
-
-## Getting Started
-
-To get started, clone this repository and explore each project folder. Follow the instructions in the README files to set up your environment and start experimenting with AI in .NET!
-
-```sh
-git clone https://github.com/duartium/awesome-ai-suite.git
+3. **Git version control**:  
+   The `appsettings.Local.json` file will be ignored by Git to ensure your API key remains secure.

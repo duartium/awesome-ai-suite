@@ -27,10 +27,16 @@ public class CharacterJsonHelper
 
 	public static Character GetCharacterByName(string name)
 	{
-		var characters = GetCharactersFromSettings();
+		string shortName = name.Split(':')[0];
 
-		var character = characters.FirstOrDefault( x => x.Name == name);
-		return character;
+        var characters = GetCharactersFromSettings();
+
+		var character = characters.FirstOrDefault( x => x.Name == shortName);
+        
+		if (character is null)
+            throw new Exception($"Character {shortName} not found.");
+
+        return character;
 	}
 
 	public static string[] GetAllCharacterNames()
@@ -40,6 +46,8 @@ public class CharacterJsonHelper
 		var characterNames = characters
 			.Select(x => $"{x.Name}: {x.ShortDescription}")
 			.ToArray();
+
+		
 
 		return characterNames;
 	}

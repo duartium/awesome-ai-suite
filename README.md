@@ -4,7 +4,7 @@ Exploring the world of Artificial Intelligence through unique characters, person
 ## 📝 Project Description  
 This console application dives into **AI concepts** using the **Semantic Kernel** 🧠. Each character in the app has a specific personality and acts as an agent 🤩, showcasing the practical use of AI in creative and interactive ways! 🎭
 
-![initial cover](src/docs/example.png)
+![initial cover](src/docs/initial-cover.png)
 
 ![interaction](src/docs/interaction.png)
 
